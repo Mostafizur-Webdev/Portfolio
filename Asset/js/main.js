@@ -95,9 +95,35 @@ document.getElementById("downloadButton").addEventListener("click", function() {
     }
 //===========================================================>
 
+// Get the modal
+var modal = document.getElementById("myModal");
 
+// Get the <span> element that closes the modal
+var closeBtn = document.querySelector(".close");
 
+// Add event listeners to all "Read more" buttons
+var buttons = document.querySelectorAll('.sh_btn');
+buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Find the closest card and extract the .description text
+        var description = this.closest('.card').querySelector('.description').innerText;
 
+        // Display the description in the modal
+        document.getElementById('modal-description').innerText = description;
 
+        // Show the modal
+        modal.style.display = "block";
+    });
+});
 
-    
+// Close the modal when the user clicks on <span> (x)
+closeBtn.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close the modal when the user clicks anywhere outside of the modal
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
